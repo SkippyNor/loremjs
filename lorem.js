@@ -86,8 +86,13 @@ var Lorem;
         lorem = lorem.join(' ');
 
         if (element) {
-            if (this.type == Lorem.TEXT)
-                element.innerHTML += lorem;
+            if (this.type == Lorem.TEXT) {
+                var paragraphs = lorem.split("\n");
+                for (var i = 0; i < paragraphs.length; i++) {
+                     paragraphs[i] = "<p>" + paragraphs[i] + "</p>";   
+                }
+                element.innerHTML += paragraphs.join('');
+            }
             else if (this.type == Lorem.IMAGE) {
                 //TODO: for now, using lorempixum.
                 var path = '';
@@ -107,8 +112,9 @@ var Lorem;
             }
         }
 
-        if (element == null)
+        if (element == null) {
             return lorem;
+        }
     };
 
     //Register as jQuery

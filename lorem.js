@@ -136,5 +136,20 @@ var Lorem;
             });
         })(jQuery);
     }
+    else if (document.querySelectorAll) {
+        // https://github.com/ded/domready
+        !function(a,b){typeof define=="function"?define(b):typeof module!="undefined"?module.exports=b():this[a]=this.domReady=b()}("domready",function(a){function l(a){k=1;while(a=b.shift())a()}var b=[],c,d=!1,e=document,f=e.documentElement,g=f.doScroll,h="DOMContentLoaded",i="addEventListener",j="onreadystatechange",k=/^loade|c/.test(e.readyState);e[i]&&e[i](h,c=function(){e.removeEventListener(h,c,d),l()},d),g&&e.attachEvent(j,c=function(){/^c/.test(e.readyState)&&(e.detachEvent(j,c),l())});return a=g?function(c){self!=top?k?c():b.push(c):function(){try{f.doScroll("left")}catch(b){return setTimeout(function(){a(c)},50)}c()}()}:function(a){k?a():b.push(a)}})
+        
+        domReady(function() {
+            var all = document.querySelectorAll("[data-lorem]"); 
+            for (var i = 0; i < all.length; i++) {
+                var el = all[i];
+                var lorem = new Lorem;
+                lorem.type = el.tagName == "IMG" ? Lorem.IMAGE : Lorem.TEXT;
+                lorem.query = el.getAttribute('data-lorem');
+                lorem.createLorem(el);
+            }
+        });
+    }
 
 })();

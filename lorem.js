@@ -71,15 +71,16 @@ var Lorem;
 
         var lorem = new Array;
         var count = parseInt(this.query);
-
+        var type = Lorem.TYPE.PARAGRAPH;
+        
         if (/\d+p/.test(this.query)) {
-            var type = Lorem.TYPE.PARAGRAPH;
+            type = Lorem.TYPE.PARAGRAPH;
         }
         else if (/\d+s/.test(this.query)) {
-            var type = Lorem.TYPE.SENTENCE;
+            type = Lorem.TYPE.SENTENCE;
         }
         else if (/\d+w/.test(this.query)) {
-            var type = Lorem.TYPE.WORD;
+            type = Lorem.TYPE.WORD;
         }
 
         lorem.push(this.createText(count, type));
